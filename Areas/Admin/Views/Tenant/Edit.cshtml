@@ -1,0 +1,98 @@
+﻿@model Tenant
+
+@{
+    ViewData["Title"] = "Edit Tenant";
+}
+
+<div class="container">
+    <h1 class="text-center">Edit Tenant</h1>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="TenantId" />
+
+        <!-- First row: TenantName and TenantPhone -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TenantName"></label>
+                    <input asp-for="TenantName" class="form-control" />
+                    <span asp-validation-for="TenantName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TenantPhone"></label>
+                    <input asp-for="TenantPhone" class="form-control" />
+                    <span asp-validation-for="TenantPhone" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second row: Address and Flat -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FlatId">Select Flat</label>
+                    <select asp-for="FlatId" class="form-control" asp-items="ViewBag.FlatList">
+                        <option value="">-- Select Flat --</option>
+                    </select>
+                    <span asp-validation-for="FlatId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third row: RegisterDate and NationalId -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="RegisterDate"></label>
+                    <input asp-for="RegisterDate" type="date" class="form-control" />
+                    <span asp-validation-for="RegisterDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="NationalId"></label>
+                    <input asp-for="NationalId" class="form-control" />
+                    <span asp-validation-for="NationalId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fourth row: Status -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="StatusId">Select Status</label>
+                    <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
+                        <option value="">-- Select Status --</option>
+                    </select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary w-100 mt-3 mb-5">Save</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-action="Index" class="btn btn-primary w-100 mt-3 mb-5">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

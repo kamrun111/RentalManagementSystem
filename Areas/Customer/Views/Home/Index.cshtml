@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Flat>
+
+<div class="row pb-3">
+	@foreach (var flat in Model)
+	{
+
+		<div class="col-lg-3 col-sm-6">
+			<div class="row p-2">
+				<div class="col-12 p-1">
+					<div class="card border-0 p-3 shadow border-top border-5 rounded">
+						<a href="@Url.Action("Details", "Flats", new { id = flat.FlatId })"><i class="bi bi-bookmark-plus-fill"></i>@flat.FlatId</a>
+						<div class="card-body pb-0">
+							<div class="pl-1">
+								<p class="card-title h5 text-bg-dark opacity-75 text-uppercase text-center"><strong>@flat.FlatName</strong></p>
+								<p class="card-title text-warning text-center"><b>@flat.FlatType.Type</b></p>
+							</div>
+							<div>
+								<a asp-action="Details" asp-route-id="@flat.FlatId" class=" btn btn-primary bg-gardient border-0 form-control">
+									Details
+								</a>
+							</div>
+
+						</div>
+												
+					</div>
+				</div>
+
+			</div>
+		</div>
+	}
+
+
+</div>
+

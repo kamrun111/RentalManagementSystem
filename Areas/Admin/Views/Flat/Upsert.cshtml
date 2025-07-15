@@ -1,0 +1,90 @@
+﻿@model FlatVM
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.Flat.FlatId!=0 ? "Update" : "Create") Flat</h2>
+			</div>
+
+		</div>
+	</div>
+	<div class=" card-body p-4">
+		<form method="post">
+			<input asp-for="Flat.FlatId" hidden />
+			<div class=" border p-3">
+				@* <div asp-validation-summary="All"> </div>*@
+
+				<div class="form-floating py-2 col-12 ">
+					<select asp-for="@Model.Flat.FloorId" asp-items="@Model.FloorList" class="form-select border-0 shadow">
+						<option disabled selected>Select Floor</option>
+
+					</select>
+					<label asp-for="@Model.Flat.FloorId" class="ms-2"></label>
+					<span asp-validation-for="Flat.FloorId" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12 ">
+					<select asp-for="Flat.FlatTypeId" asp-items="@Model.TypeList" class="form-select border-0 shadow">
+						<option disabled selected>Select Type</option>
+
+					</select>
+					<label asp-for="Flat.FlatTypeId" class="ms-2"></label>
+					<span asp-validation-for="Flat.FlatTypeId" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12 ">
+					<input asp-for="Flat.FlatName" class="form-control border-0 shadow" />
+					<label asp-for="Flat.FlatName" class="ms-2"></label>
+					<span asp-validation-for="Flat.FlatName" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12 ">
+					<input asp-for="Flat.FlatSize" class="form-control border-0 shadow" />
+					<label asp-for="Flat.FlatSize" class="ms-2"></label>
+					<span asp-validation-for="Flat.FlatSize" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12 ">
+					<input asp-for="Flat.FlatRent" class="form-control border-0 shadow" />
+					<label asp-for="Flat.FlatRent" class="ms-2"></label>
+					<span asp-validation-for="Flat.FlatRent" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12 ">
+					<input asp-for="Flat.ServiceCharge" class="form-control border-0 shadow" />
+					<label asp-for="Flat.ServiceCharge" class="ms-2"></label>
+					<span asp-validation-for="Flat.ServiceCharge" class="text-danger"></span>
+				</div>
+
+				<div class="row pt-2 mt-3">
+					<div class="col-6 col-md-3">
+						@if (Model.Flat.FlatTypeId!=0)
+						{
+							<button type="submit" class="btn btn-primary form-control"> Update</button>
+						}
+						else
+
+						{
+							<button type="submit" class="btn btn-primary form-control"> Create</button>
+						}
+
+					</div>
+					<div class="col-6 col-md-3">
+						<a asp-controller="Flat" asp-action="Index" class=" btn btn-outline-primary form-control">
+							Back to List
+						</a>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</form>
+	</div>
+</div>
+
+
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial"></partial>
+	}
+}

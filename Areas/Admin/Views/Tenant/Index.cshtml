@@ -1,0 +1,40 @@
+﻿@model List<Tenant>
+
+@{
+    ViewData["Title"] = "Tenants List";
+}
+
+<h2>Tenants</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Tenant</a>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Flat</th>
+            <th>Address</th>
+            <th>National ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tenant in Model)
+        {
+            <tr>
+                <td>@tenant.TenantName</td>
+                <td>@tenant.TenantPhone</td>
+                <td>@tenant.Flat?.FlatName</td>
+                <td>@tenant.Address</td>
+                <td>@tenant.NationalId</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tenant.TenantId">Edit</a> 
+@*                     <a asp-action="Details" asp-route-id="@tenant.TenantId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@tenant.TenantId">Delete</a> *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

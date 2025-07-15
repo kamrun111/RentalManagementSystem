@@ -1,0 +1,108 @@
+﻿@model Tenant
+
+@{
+	ViewData["Title"] = "Create Tenant";
+}
+
+<div class="container">
+	<h1 class="text-center">Create Tenant</h1>
+
+	<form asp-action="Create" method="post">
+		<!-- First row of input fields -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="TenantName"></label>
+					<input asp-for="TenantName" class="form-control" />
+					<span asp-validation-for="TenantName" class="text-danger"></span>
+				</div>
+			</div>
+
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="TenantPhone"></label>
+					<input asp-for="TenantPhone" class="form-control" />
+					<span asp-validation-for="TenantPhone" class="text-danger"></span>
+				</div>
+			</div>
+
+
+		</div>
+
+		<!-- Second row of input fields -->
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="Address"></label>
+					<input asp-for="Address" class="form-control" />
+					<span asp-validation-for="Address" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="FlatId">Select Flat</label>
+					<select asp-for="FlatId" class="form-control" asp-items="ViewBag.FlatList">
+					</select>
+					<span asp-validation-for="FlatId" class="text-danger"></span>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<!-- Third row of input fields -->
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="RegisterDate"></label>
+					<input asp-for="RegisterDate" type="date" class="form-control" />
+					<span asp-validation-for="RegisterDate" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="NationalId"></label>
+					<input asp-for="NationalId" class="form-control" />
+				</div>
+			</div>
+
+
+		</div>
+
+		<!-- Third row of input fields -->
+		<div class="row">
+
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label asp-for="StatusId">Select Satus</label>
+					<select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
+						<option value="1">-- Active --</option>
+					</select>
+					<span asp-validation-for="StatusId" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Buttons -->
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary w-100 mt-3 mb-5">Create</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Flat" asp-action="Index" class="btn btn-primary w-100 mt-3 mb-5">
+					Back to List
+				</a>
+			</div>
+		</div>
+	</form>
+</div>
+
+

@@ -1,0 +1,114 @@
+﻿@model Expenditure
+
+@{
+    ViewData["Title"] = "Edit Expenditure";
+
+    // Generate options HTML once on server-side for JS use
+    var expenseOptions = "";
+    foreach (var expense in (SelectList)ViewBag.ExpenseList)
+    {
+        expenseOptions += $"<option value='{expense.Value}'>{expense.Text}</option>";
+    }
+}
+
+<div class="container mt-4" style="max-height: 80vh; overflow-y: auto;">
+    <h2>Edit Expenditure</h2>
+
+    <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="ExpenditureId" />
+        <div class="form-group mb-3">
+            <label for="LocationId">Location</label>
+            <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationList">
+                <option value="">-- Select Location --</option>
+            </select>
+            <span asp-validation-for="LocationId" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="ExpenditureDate"></label>
+            <input asp-for="ExpenditureDate" type="date" class="form-control" />
+            <span asp-validation-for="ExpenditureDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <h4>Expenditure Details</h4>
+
+        <table class="table" id="detailsTable">
+            <thead>
+                <tr>
+                    <th>Expense</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.ExpenditureDetails.Count; i++)
+                {
+
+                    <input  asp-for="ExpenditureDetails[@i].ExpenditureDetailId" hidden/>
+                    <tr>
+                        <td>
+                            <select name="ExpenditureDetails[@i].ExpenseId" class="form-control" required>
+                                <option value="">-- Select Expense --</option>
+                                @foreach (var expense in (SelectList)ViewBag.ExpenseList)
+                                {
+                                    var isSelected = Model.ExpenditureDetails[i].ExpenseId.ToString() == expense.Value ? "selected" : "";
+                                    @:<option value="@expense.Value" @isSelected>@expense.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ExpenditureDetails[@i].ExpenseId" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input name="ExpenditureDetails[@i].Amount" type="number" step="0.01" min="0" class="form-control detail-amount" value="@Model.ExpenditureDetails[i].Amount" required />
+                        </td>
+                        <td>
+                            <input name="ExpenditureDetails[@i].Remarks" type="text" class="form-control" value="@Model.ExpenditureDetails[i].Remarks" />
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+       @*  <button type="button" class="btn btn-secondary mb-3" onclick="addRow()">Add Detail</button> *@
+
+        <div class="mb-3">
+            <label>Total Amount</label>
+            <input id="totalAmount" name="TotalAmount" type="text" class="form-control" value="@Model.TotalAmount" readonly />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+
+        function attachEvents() {
+            document.querySelectorAll('.detail-amount').forEach(input => {
+                input.oninput = function () {
+                    calculateTotalAmount();
+                };
+            });
+        }
+
+        function calculateTotalAmount() {
+            let total = 0;
+            document.querySelectorAll('.detail-amount').forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+            document.getElementById('totalAmount').value = total.toFixed(2);
+        }
+
+        attachEvents();
+    </script>
+}
