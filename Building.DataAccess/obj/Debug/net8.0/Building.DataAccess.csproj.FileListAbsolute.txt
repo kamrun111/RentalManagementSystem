@@ -1,0 +1,17 @@
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.DataAccess.deps.json
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.DataAccess.runtimeconfig.json
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.DataAccess.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.DataAccess.pdb
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.Models.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\bin\Debug\net8.0\Building.Models.pdb
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.csproj.AssemblyReference.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.AssemblyInfoInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.AssemblyInfo.cs
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.csproj.CoreCompileInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.E34B7954.Up2Date
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\refint\Building.DataAccess.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.pdb
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.genruntimeconfig.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\ref\Building.DataAccess.dll

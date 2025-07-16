@@ -1,0 +1,5 @@
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net9.0\Building.DataAccess.csproj.AssemblyReference.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net9.0\Building.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net9.0\Building.DataAccess.AssemblyInfoInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net9.0\Building.DataAccess.AssemblyInfo.cs
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net9.0\Building.DataAccess.csproj.CoreCompileInputs.cache

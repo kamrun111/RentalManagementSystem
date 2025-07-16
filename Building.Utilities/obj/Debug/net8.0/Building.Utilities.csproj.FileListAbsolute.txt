@@ -1,0 +1,11 @@
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\bin\Debug\net8.0\Building.Utilities.deps.json
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\bin\Debug\net8.0\Building.Utilities.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\bin\Debug\net8.0\Building.Utilities.pdb
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.AssemblyInfoInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.AssemblyInfo.cs
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.csproj.CoreCompileInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\refint\Building.Utilities.dll
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\Building.Utilities.pdb
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Utilities\obj\Debug\net8.0\ref\Building.Utilities.dll
