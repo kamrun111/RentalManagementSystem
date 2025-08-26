@@ -11,6 +11,6 @@ namespace Building.Models
     {
         [Key]
         public int FlatTypeId { get; set; }
-        public string Type { get; set; }
+        public string FlatTypeName { get; set; }
     }
 }

@@ -5,6 +5,7 @@ C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.AssemblyInfoInputs.cache
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.AssemblyInfo.cs
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.csproj.CoreCompileInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.sourcelink.json
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.dll
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\refint\Building.Models.dll
 C:\drive D\Project\asp.net core\BuildingBalance\Building.Models\obj\Debug\net8.0\Building.Models.pdb

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Building.Utilities;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +21,22 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = $"/Identity/Account/Login";
-    options.LoginPath = $"/Identity/Account/Logout";
-    options.LoginPath = $"/Identity/Account/AccessDenied";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+// Register HttpClient for making requests to the WebAPI
+builder.Services.AddHttpClient();
+
+// Register configuration settings for API base URL
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+// Register Swagger services
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -43,6 +54,17 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Enable Swagger in Development and Staging environments
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+{
+    app.UseSwagger(); //(Enables Swagger middleware) Serves the Swagger JSON endpoint
+    app.UseSwaggerUI(); // Provides the Swagger UI for testing and exploring the API
+}
+
+// Map API controllers (for Web API routes)
+app.MapControllers();
+
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",

@@ -25,6 +25,7 @@ namespace Building.Models
         public string? NationalId { get; set; }
 
         public DateTime RegisterDate { get; set; }
+        [Required]
         public int FlatId { get; set; }
         [ForeignKey("FlatId")]
         [ValidateNever]

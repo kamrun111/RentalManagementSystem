@@ -15,6 +15,7 @@
             <th>Name</th>
             <th>Phone</th>
             <th>Flat</th>
+            <th>Location</th>  <!-- Added Location column -->
             <th>Address</th>
             <th>National ID</th>
             <th>Actions</th>
@@ -27,6 +28,7 @@
                 <td>@tenant.TenantName</td>
                 <td>@tenant.TenantPhone</td>
                 <td>@tenant.Flat?.FlatName</td>
+                <td>@tenant.Flat?.Location?.LocationName  </td>  <!-- Null check added -->
                 <td>@tenant.Address</td>
                 <td>@tenant.NationalId</td>
                 <td>

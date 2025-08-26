@@ -18,6 +18,8 @@ namespace Building.DataAccess.Repository.IRepository
         IExpenditureDetailRepository ExpenditureDetail { get; }
         IExpenseRepository Expense { get; }
 
+        IStoreProcedureGenericRepository StoreProcedure { get; }
+
 
         void Save();
         Task SaveAsync();

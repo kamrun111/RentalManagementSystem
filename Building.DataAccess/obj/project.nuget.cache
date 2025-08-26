@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "DD2ywHK4TUA=",
+  "dgSpecHash": "uIiDGQ9NoUY=",
   "success": true,
   "projectFilePath": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\Building.DataAccess\\Building.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khuku\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\khuku\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\khuku\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\khuku\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\khuku\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0\\microsoft.aspnetcore.cryptography.internal.8.0.0.nupkg.sha512",
     "C:\\Users\\khuku\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.0\\microsoft.aspnetcore.cryptography.keyderivation.8.0.0.nupkg.sha512",

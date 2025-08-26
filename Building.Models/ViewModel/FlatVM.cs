@@ -12,6 +12,8 @@ namespace Building.Models.ViewModel
     {
         public Flat Flat { get; set; }
         [ValidateNever]
+        public IEnumerable<SelectListItem> LocationList { get; set; }
+        [ValidateNever]
         public IEnumerable<SelectListItem> FloorList { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> TypeList { get; set; }

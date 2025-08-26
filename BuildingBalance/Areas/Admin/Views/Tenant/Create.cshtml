@@ -43,10 +43,11 @@
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label asp-for="FlatId">Select Flat</label>
-					<select asp-for="FlatId" class="form-control" asp-items="ViewBag.FlatList">
+					<label asp-for="StatusId">Select Satus</label>
+					<select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
+						<option value="1">-- Active --</option>
 					</select>
-					<span asp-validation-for="FlatId" class="text-danger"></span>
+					<span asp-validation-for="StatusId" class="text-danger"></span>
 				</div>
 			</div>
 
@@ -75,20 +76,32 @@
 
 		</div>
 
-		<!-- Third row of input fields -->
+		<!-- 4th row of input fields -->
 		<div class="row">
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="LocationId">Select Location</label>
+					<select name="LocationId" id="LocationId" class="form-control" asp-items="ViewBag.LocationlistItem">
+						<option value="">-- Select Location --</option>
+					</select>
+					<span class="text-danger"></span>
+				</div>
+			</div>
 
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label asp-for="StatusId">Select Satus</label>
-					<select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
-						<option value="1">-- Active --</option>
+					<label asp-for="FlatId">Select Flat</label>
+					<select asp-for="FlatId" id="FlatId" class="form-control" asp-items="ViewBag.FlatList" disabled>
 					</select>
-					<span asp-validation-for="StatusId" class="text-danger"></span>
+					<span asp-validation-for="FlatId" class="text-danger"></span>
 				</div>
 			</div>
+
 		</div>
+
+
 
 
 		<!-- Buttons -->
@@ -97,12 +110,16 @@
 				<button type="submit" class="btn btn-primary w-100 mt-3 mb-5">Create</button>
 			</div>
 			<div class="col-6 col-md-3">
-				<a asp-controller="Flat" asp-action="Index" class="btn btn-primary w-100 mt-3 mb-5">
+				<a asp-controller="Tenant" asp-action="Index" class="btn btn-primary w-100 mt-3 mb-5">
 					Back to List
 				</a>
 			</div>
 		</div>
 	</form>
 </div>
+
+@section Scripts {
+	<script src="~/js/tenant.js"></script>
+}
 
 

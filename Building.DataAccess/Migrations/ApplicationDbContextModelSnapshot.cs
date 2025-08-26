@@ -129,7 +129,7 @@ namespace Building.DataAccess.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<decimal>("FlatRent")
+                    b.Property<decimal?>("FlatRent")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("FlatSize")
@@ -139,13 +139,16 @@ namespace Building.DataAccess.Migrations
                     b.Property<int?>("FlatStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FlatTypeId")
+                    b.Property<int>("FlatTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FloorId")
+                    b.Property<int>("FloorId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ServiceCharge")
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("ServiceCharge")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("FlatId");
@@ -153,6 +156,8 @@ namespace Building.DataAccess.Migrations
                     b.HasIndex("FlatTypeId");
 
                     b.HasIndex("FloorId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Flats");
 
@@ -166,7 +171,7 @@ namespace Building.DataAccess.Migrations
                             FlatStatus = 0,
                             FlatTypeId = 1,
                             FloorId = 1,
-                            ServiceCharge = 0m
+                            LocationId = 0
                         },
                         new
                         {
@@ -177,7 +182,7 @@ namespace Building.DataAccess.Migrations
                             FlatStatus = 0,
                             FlatTypeId = 1,
                             FloorId = 1,
-                            ServiceCharge = 0m
+                            LocationId = 0
                         },
                         new
                         {
@@ -188,7 +193,7 @@ namespace Building.DataAccess.Migrations
                             FlatStatus = 0,
                             FlatTypeId = 1,
                             FloorId = 1,
-                            ServiceCharge = 0m
+                            LocationId = 0
                         });
                 });
 
@@ -200,7 +205,7 @@ namespace Building.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlatTypeId"));
 
-                    b.Property<string>("Type")
+                    b.Property<string>("FlatTypeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -212,17 +217,17 @@ namespace Building.DataAccess.Migrations
                         new
                         {
                             FlatTypeId = 1,
-                            Type = "Flat"
+                            FlatTypeName = "Flat"
                         },
                         new
                         {
                             FlatTypeId = 2,
-                            Type = "Commercial"
+                            FlatTypeName = "Commercial"
                         },
                         new
                         {
                             FlatTypeId = 3,
-                            Type = "Shop"
+                            FlatTypeName = "Shop"
                         });
                 });
 
@@ -617,15 +622,27 @@ namespace Building.DataAccess.Migrations
                 {
                     b.HasOne("Building.Models.FlatType", "FlatType")
                         .WithMany()
-                        .HasForeignKey("FlatTypeId");
+                        .HasForeignKey("FlatTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Building.Models.Floor", "Floor")
                         .WithMany()
-                        .HasForeignKey("FloorId");
+                        .HasForeignKey("FloorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Building.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("FlatType");
 
                     b.Navigation("Floor");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Building.Models.Tenant", b =>

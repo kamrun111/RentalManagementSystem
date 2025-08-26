@@ -18,41 +18,53 @@ namespace BuildingBalance.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        private IEnumerable<SelectListItem> GetFlatSelectList()
-        {
-            return _unitOfWork.Flat.GetAll().Where(f => f.FlatStatus == 0)  // filter for FlatStatus == 1
-                .Select(u => new SelectListItem
-                {
-                    Text = u.FlatName,
-                    Value = u.FlatId.ToString()
-                })
-                .Prepend(new SelectListItem { Text = "-- Select Flat --", Value = "" });
-        }
-
 
         public IActionResult Index()
         {
-            List<Tenant> TenantList = _unitOfWork.Tenant.GetAll(includeProperties: "Flat")
-                .OrderBy(u => u.StatusId)
-                .ThenBy(u => u.TenantName)
-                .ToList();
-            ViewBag.FlatList = GetFlatSelectList();
-            return View(TenantList);
+            try
+            {
+
+
+                List<Tenant> TenantList = _unitOfWork.Tenant.GetAll(includeProperties: "Flat,Flat.Location")  // Include Flat and its Location
+                                   .Where(t => t.StatusId == 1)  // Filter for TenantStats = 1
+                                   .OrderBy(t => t.Flat.Location.LocationName)  // Order by LocationId from related Flat's Location
+                                   .ThenBy(t => t.TenantName)       // Then order by TenantName
+                                   .ToList();
+
+                //ViewBag.FlatList = GetFlatSelectList();
+                return View(TenantList);
+            }
+            catch
+            {
+
+            }
+            return View();
         }
+
+        // Action to fetch flats based on location
+        public JsonResult GetFlatsByLocation(int locationId)
+        {
+            var flats = _unitOfWork.Flat.GetAll()
+                        .Where(f => f.LocationId == locationId && f.FlatStatus==0)
+                        .Select(f => new
+                        {
+                            FlatId = f.FlatId,
+                            FlatName = f.FlatName
+                        })
+                        .ToList();
+            return Json(flats);
+        }
+
+
         [HttpGet]
         public IActionResult Create()
         {
-
-            IEnumerable<SelectListItem> Statuslist = _unitOfWork.Status.GetAll()
-                .Select(u => new SelectListItem
-                {
-                    Text = u.StatusName,
-                    Value = u.StatusId.ToString()
-                });
+            var Statuslist = Helper.CreateSelectList(_unitOfWork.Status.GetAll(), "StatusName", "StatusId");
             ViewBag.StatuslistItem = Statuslist;
-
-
-            ViewBag.FlatList = GetFlatSelectList();  // Pass to view
+            var Locationlist = Helper.CreateSelectList(_unitOfWork.Location.GetAll(), "LocationName", "LocationId");
+            ViewBag.LocationlistItem = Locationlist;
+            //var FlatList = Helper.CreateSelectList(_unitOfWork.Flat.GetAll(), "FlatName", "FlatId");
+            //ViewBag.FlatList = FlatList; // Pass to view
             var tenant = new Tenant
             {
                 RegisterDate = DateTime.Today
@@ -69,6 +81,7 @@ namespace BuildingBalance.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                obj.StatusId = 1;// tenant stats active=1
                 _unitOfWork.Tenant.Add(obj);
 
                 var flat = _unitOfWork.Flat.Get(f => f.FlatId == obj.FlatId);
@@ -81,15 +94,11 @@ namespace BuildingBalance.Areas.Admin.Controllers
             }
             else
             {
-                // If model state is invalid dropdown lists
-                IEnumerable<SelectListItem> Statuslist = _unitOfWork.Status.GetAll()
-                    .Select(u => new SelectListItem
-                    {
-                        Text = u.StatusName,
-                        Value = u.StatusId.ToString()
-                    });
-                ViewBag.StatuslistItem = Statuslist;
-                ViewBag.FlatList = GetFlatSelectList();
+                ViewBag.StatuslistItem = new SelectList(_unitOfWork.Status.GetAll(), "StatusId", "StatusName", obj.StatusId);
+                var Locationlist = Helper.CreateSelectList(_unitOfWork.Location.GetAll(), "LocationName", "LocationId");
+                ViewBag.LocationlistItem = Locationlist;
+                var FlatList = Helper.CreateSelectList(_unitOfWork.Flat.GetAll(), "FlatName", "FlatId");
+               
                 return View(obj);
 
             }
@@ -117,6 +126,8 @@ namespace BuildingBalance.Areas.Admin.Controllers
             // Populate dropdown lists for Flats and Statuses
             ViewBag.FlatList = new SelectList(_unitOfWork.Flat.GetAll(), "FlatId", "FlatName", tenant.FlatId);
             ViewBag.StatuslistItem = new SelectList(_unitOfWork.Status.GetAll(), "StatusId", "StatusName", tenant.StatusId);
+            var Locationlist = Helper.CreateSelectList(_unitOfWork.Location.GetAll(), "LocationName", "LocationId");
+            ViewBag.LocationlistItem = Locationlist;
 
             return View(tenant);
         }
@@ -132,12 +143,9 @@ namespace BuildingBalance.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                // Step 1: Fetch the existing tenant (tracked by EF Core)
-                var existingTenant = _unitOfWork.Tenant.Get(t => t.TenantId == id);
-                //if (existingTenant == null)
-                //    return NotFound();
 
-                // Step 2: Update tenant properties
+                var existingTenant = _unitOfWork.Tenant.Get(t => t.TenantId == id);
+
                 existingTenant.TenantName = obj.TenantName;
                 existingTenant.TenantPhone = obj.TenantPhone;
                 existingTenant.Address = obj.Address;
@@ -146,8 +154,8 @@ namespace BuildingBalance.Areas.Admin.Controllers
                 existingTenant.RegisterDate = obj.RegisterDate;
                 existingTenant.StatusId = obj.StatusId;
 
-                // Step 3: Check if Flat has changed and update FlatStatus accordingly
-                if (existingTenant.FlatId != obj.FlatId)
+                    // Step 3: Check if Flat has changed and update FlatStatus accordingly
+               if (existingTenant.FlatId != obj.FlatId || obj.StatusId == 0)
                 {
                     // Update old flat to vacant
                     var oldFlat = _unitOfWork.Flat.Get(f => f.FlatId == existingTenant.FlatId);
@@ -157,15 +165,7 @@ namespace BuildingBalance.Areas.Admin.Controllers
                         _unitOfWork.Flat.Update(oldFlat);
                     }
 
-                    // Update new flat to occupied
-                    var newFlat = _unitOfWork.Flat.Get(f => f.FlatId == obj.FlatId);
-                    if (newFlat != null)
-                    {
-                        newFlat.FlatStatus = 1;  // Occupied
-                        _unitOfWork.Flat.Update(newFlat);
-                    }
 
-                    existingTenant.FlatId = obj.FlatId; // Update Tenant's flat reference
                 }
 
                 // Step 4: Update tenant in repository
@@ -179,7 +179,8 @@ namespace BuildingBalance.Areas.Admin.Controllers
             }
 
             // If validation fails, repopulate dropdown lists and return view
-            ViewBag.FlatList = GetFlatSelectList();
+             ViewBag.FlatList = new SelectList(_unitOfWork.Flat.GetAll(), "FlatId", "FlatName", obj.FlatId);
+;
             ViewBag.StatuslistItem = _unitOfWork.Status.GetAll()
                 .Select(u => new SelectListItem { Text = u.StatusName, Value = u.StatusId.ToString() });
 

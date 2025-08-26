@@ -41,13 +41,17 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="FlatId">Select Flat</label>
-                    <select asp-for="FlatId" class="form-control" asp-items="ViewBag.FlatList">
-                        <option value="">-- Select Flat --</option>
+                    <label asp-for="StatusId">Select Status</label>
+                    <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
+                        <option value="">-- Select Status --</option>
                     </select>
-                    <span asp-validation-for="FlatId" class="text-danger"></span>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
                 </div>
             </div>
+
+
+
+
         </div>
 
         <!-- Third row: RegisterDate and NationalId -->
@@ -71,15 +75,28 @@
 
         <!-- Fourth row: Status -->
         <div class="row">
+
+
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="StatusId">Select Status</label>
-                    <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatuslistItem">
-                        <option value="">-- Select Status --</option>
+                    <label for="LocationId">Select Location</label>
+                    <select name="LocationId" id="LocationId" class="form-control" asp-items="ViewBag.LocationlistItem">
+                        <option value="">-- Select Location --</option>
                     </select>
-                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                    <span class="text-danger"></span>
                 </div>
             </div>
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FlatId">Select Flat</label>
+                    <select asp-for="FlatId" id="FlatId" class="form-control" asp-items="ViewBag.FlatList" >
+                    </select>
+                    <span asp-validation-for="FlatId" class="text-danger"></span>
+                </div>
+            </div>
+
         </div>
 
         <!-- Buttons -->
@@ -93,6 +110,10 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script src="~/js/tenant.js"></script>
+}
 
 
 

@@ -46,8 +46,7 @@ namespace Building.DataAccess.Repository
             IQueryable<T> query = dbSet; //query = dbSet: You are assigning the DbSet<T> to the query
             if(!string.IsNullOrEmpty(includeProperties))// not null
             {
-                foreach (var property in includeProperties.
-                    Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries) )
+                foreach (var property in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries) )
                 {
                     query= query.Include(property);
                 }

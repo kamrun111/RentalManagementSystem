@@ -6,6 +6,7 @@ using Building.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuildingBalance.Areas.Admin.Controllers
 {
@@ -20,7 +21,7 @@ namespace BuildingBalance.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Flat> FlatList = _unitOfWork.Flat.GetAll(includeProperties: "Floor,FlatType").ToList();
+            List<Flat> FlatList = _unitOfWork.Flat.GetAll(includeProperties: "Floor,FlatType,Location").ToList();
             //List<Flat> FlatList = _unitOfWork.Flat.GetAll(includeProperties: "Floor,Property1,Property2").ToList(); for more include properties
 
             return View(FlatList);
@@ -29,10 +30,12 @@ namespace BuildingBalance.Areas.Admin.Controllers
         {
             var floorItems = _unitOfWork.Floor.GetAll();
             var flatTypeItems = _unitOfWork.FlatType.GetAll();
+            var LocationList = _unitOfWork.Location.GetAll();
             FlatVM FlatVM = new()
             {
                 FloorList = Helper.CreateSelectList(floorItems, "FloorName", "FloorId"),
-                TypeList = Helper.CreateSelectList(flatTypeItems, "Type", "FlatTypeId"),
+                TypeList = Helper.CreateSelectList(flatTypeItems, "FlatTypeName", "FlatTypeId"),
+                LocationList = Helper.CreateSelectList(LocationList, "LocationName", "LocationId"),
                 Flat = new Flat()
             };
 
@@ -127,16 +130,61 @@ namespace BuildingBalance.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async  Task<IActionResult> GetAll()
         {
-            List<Flat> FlatList = _unitOfWork.Flat.GetAll(includeProperties: "Floor,FlatType").ToList();
-            return Json(new { data = FlatList });
+            try
+            {
+                //List<Flat> FlatList = _unitOfWork.Flat.GetAll(includeProperties: "Floor,FlatType,Location").ToList();
+                //return Json(new { data = FlatList });
+
+                string storedProcName = "GetAllFlats";
+                var result = await _unitOfWork.StoreProcedure.ExecuteStoredProcedure<dynamic>(storedProcName);
+                var flatList = result.Select(x => new Flat
+                {
+                    FlatId = x.FlatId,
+                    FlatName = x.FlatName,
+                    FlatSize = x.FlatSize,
+                    FlatRent = x.FlatRent,
+                    ServiceCharge = x.ServiceCharge,
+                    LocationId = x.LocationId,
+                    Location = new Location
+                    {
+                        LocationId = x.LocationId,
+                        LocationName = x.LocationName ?? "Unknown" // Set LocationName from procedure result
+                    },
+                    FloorId = x.FloorId,
+                    Floor = new Floor
+                    {
+                        FloorId = x.FloorId,
+                        FloorName = x.FloorName ?? "Unknown" // Set FloorName from procedure result
+                    },
+                    FlatTypeId = x.FlatTypeId,
+                    FlatType = new FlatType
+                    {
+                        FlatTypeId = x.FlatTypeId,
+                        FlatTypeName = x.FlatTypeName ?? "Unknown" // Set FlatTypeName from procedure result
+                    },
+                    FlatStatus = x.FlatStatus
+                }).ToList();
+
+                return Json(new { data = flatList });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+
         }
 
 
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                // Return JSON response with error message for permission denied
+                return Json(new { success = false, message = "You do not have permission to delete this record." });
+            }
             var flatDb = _unitOfWork.Flat.Get(e => e.FlatId == id);
             if (flatDb == null)
             {

@@ -9,6 +9,7 @@ C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\ne
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.AssemblyInfoInputs.cache
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.AssemblyInfo.cs
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.csproj.CoreCompileInputs.cache
+C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.sourcelink.json
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.E34B7954.Up2Date
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\Building.DataAccess.dll
 C:\drive D\Project\asp.net core\BuildingBalance\Building.DataAccess\obj\Debug\net8.0\refint\Building.DataAccess.dll

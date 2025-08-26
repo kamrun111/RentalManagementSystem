@@ -29,6 +29,8 @@ namespace Building.DataAccess.Data
 
         public DbSet<Location> Locations { get; set; }
 
+        public DbSet<MonthEntry> MonthEntries { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,9 +54,9 @@ namespace Building.DataAccess.Data
 
             );
             modelBuilder.Entity<FlatType>().HasData(
-            new FlatType { FlatTypeId = 1, Type = "Flat" },
-            new FlatType { FlatTypeId = 2, Type = "Commercial" },
-            new FlatType { FlatTypeId = 3, Type = "Shop" }
+            new FlatType { FlatTypeId = 1, FlatTypeName = "Flat" },
+            new FlatType { FlatTypeId = 2, FlatTypeName = "Commercial" },
+            new FlatType { FlatTypeId = 3, FlatTypeName = "Shop" }
 
             );
 

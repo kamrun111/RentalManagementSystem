@@ -9,11 +9,23 @@ function loadDataTable() {
     dataTable = $('#myNewTable').DataTable({
         "ajax": { url: '/admin/flat/getall' },
         "columns": [
-            { data: 'flatId', "width": "10%" },
-            { data: 'floor.floorName', "width": "15%" },
+            { data: 'location.locationName', "width": "10%" },
+            { data: 'flatId', "width": "5%" },
+            { data: 'floor.floorName', "width": "10%" },
             { data: 'flatName', "width": "20%" },
             { data: 'flatSize', "width": "15%" }, 
             { data: 'flatRent', "width": "15%" },
+            {
+                data: 'flatStatus',
+                "render": function (data) {
+                    if (data == '0') {
+                        return 'Free';  // Show 'Free' when flatStatus is '-'
+                    }
+                    return 'Occupied';  // Otherwise, display 'Occupied'
+                },
+                "width": "15%"
+
+            },
             
             {
                 data: 'flatId',
@@ -23,7 +35,7 @@ function loadDataTable() {
                            <a onClick= Delete('/admin/flat/Delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete</a>  
                     </div>`
                 },
-                "width": "25%"
+                "width": "15%"
             }
            
         ]
@@ -44,8 +56,13 @@ function Delete(url) {
                 type: "DELETE",
                 url: url,
                 success: function (data) {
-                    dataTable.ajax.reload();
+                    if (data.success) {
+                        dataTable.ajax.reload();
                         toastr.success(data.message);
+                    } else {
+                        toastr.error(data.message);
+                    } 
+                    
 
 
                 }

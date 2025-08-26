@@ -14,7 +14,6 @@
     <thead class="table-dark">
         <tr>
             <th>Location</th>
-            <th>Details Count</th>
             <th>Date</th>
             <th>Description</th>
             <th>Total Amount</th>
@@ -30,12 +29,12 @@
                 <td>@item.ExpenditureDate.ToString("yyyy-MM-dd")</td>
                 <td>@item.Description</td>
                 <td>@string.Format("{0:C}", item.TotalAmount)</td>
-                <td>@item.ExpenditureDetails?.Count ?? 0</td>
+                <td>@item.ExpenditureDetails?.Count </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ExpenditureId" class="btn btn-info btn-sm">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.ExpenditureId" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.ExpenditureId" class="btn btn-danger btn-sm">Delete</a>
-                </td>
+@*                     <a asp-action="Details" asp-route-id="@item.ExpenditureId" class="btn btn-info btn-sm">Details</a>
+ *@                    <a asp-action="Edit" asp-route-id="@item.ExpenditureId" class="btn btn-warning btn-sm">Edit</a>
+@*                     <a asp-action="Delete" asp-route-id="@item.ExpenditureId" class="btn btn-danger btn-sm">Delete</a>
+ *@                </td>
             </tr>
         }
     </tbody>
