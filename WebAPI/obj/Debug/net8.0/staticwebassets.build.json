@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QcFuzBo1R+oepfJ/FbETZZWvRdR9dA6RL0yvCzlmGV0=",
+  "Hash": "cUiXRM/LwajTvnngLdZXaIZaatz78Aa4h5WdS0ALTFA=",
   "Source": "WebAPI",
   "BasePath": "_content/WebAPI",
   "Mode": "Default",
@@ -132,6 +132,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\location.js"
+    },
+    {
+      "Identity": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\monthEntry.js",
+      "SourceId": "BuildingBalance",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\",
+      "BasePath": "_content/BuildingBalance",
+      "RelativePath": "js/monthEntry#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lrgekfpz02",
+      "Integrity": "YczdK0NE2mosPP0Lu1Tu/3aMgccPwB+eIONAPWb2z94=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\monthEntry.js"
     },
     {
       "Identity": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\site.js",
@@ -1506,7 +1527,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 21 Aug 2025 21:12:12 GMT"
+          "Value": "Thu, 28 Aug 2025 04:30:56 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1543,7 +1564,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 21 Aug 2025 21:12:12 GMT"
+          "Value": "Thu, 28 Aug 2025 04:30:56 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1886,6 +1907,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-tM7IowM3Uzaz9PBJUv0Iw7YjLKRwDgHggjsPGMAQ9+0="
+        }
+      ]
+    },
+    {
+      "Route": "_content/BuildingBalance/js/monthEntry.js",
+      "AssetFile": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\monthEntry.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1840"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YczdK0NE2mosPP0Lu1Tu/3aMgccPwB+eIONAPWb2z94=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 28 Aug 2025 11:18:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YczdK0NE2mosPP0Lu1Tu/3aMgccPwB+eIONAPWb2z94="
+        }
+      ]
+    },
+    {
+      "Route": "_content/BuildingBalance/js/monthEntry.lrgekfpz02.js",
+      "AssetFile": "C:\\drive D\\Project\\asp.net core\\BuildingBalance\\BuildingBalance\\wwwroot\\js\\monthEntry.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1840"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YczdK0NE2mosPP0Lu1Tu/3aMgccPwB+eIONAPWb2z94=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 28 Aug 2025 11:18:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lrgekfpz02"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YczdK0NE2mosPP0Lu1Tu/3aMgccPwB+eIONAPWb2z94="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/BuildingBalance/js/monthEntry.js"
         }
       ]
     },
@@ -7082,7 +7185,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 21 Aug 2025 21:12:13 GMT"
+          "Value": "Thu, 28 Aug 2025 20:39:28 GMT"
         },
         {
           "Name": "Link",
@@ -7131,7 +7234,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 21 Aug 2025 21:12:13 GMT"
+          "Value": "Thu, 28 Aug 2025 20:39:28 GMT"
         },
         {
           "Name": "Link",

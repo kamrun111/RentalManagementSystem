@@ -20,6 +20,9 @@ namespace Building.DataAccess.Repository.IRepository
 
         IStoreProcedureGenericRepository StoreProcedure { get; }
 
+        IMonthEntryRepository MonthEntry { get; }
+        ITypeIdentifiereRepository TypeIdentifier { get; }
+
 
         void Save();
         Task SaveAsync();

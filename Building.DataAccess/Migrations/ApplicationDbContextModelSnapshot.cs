@@ -307,6 +307,40 @@ namespace Building.DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Building.Models.MonthEntry", b =>
+                {
+                    b.Property<int>("MonthEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MonthEntryId"));
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MonthName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Record_creted_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TypeIdentifierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MonthEntryId");
+
+                    b.HasIndex("TypeIdentifierId");
+
+                    b.ToTable("MonthEntries");
+                });
+
             modelBuilder.Entity("Building.Models.Status", b =>
                 {
                     b.Property<int>("StatusId")
@@ -366,6 +400,23 @@ namespace Building.DataAccess.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("Tenants");
+                });
+
+            modelBuilder.Entity("Building.Models.TypeIdentifier", b =>
+                {
+                    b.Property<int>("TypeIdentifierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeIdentifierId"));
+
+                    b.Property<string>("TypeIdentifierName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TypeIdentifierId");
+
+                    b.ToTable("TypeIdentifiers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -643,6 +694,15 @@ namespace Building.DataAccess.Migrations
                     b.Navigation("Floor");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Building.Models.MonthEntry", b =>
+                {
+                    b.HasOne("Building.Models.TypeIdentifier", "TypeIdentifier")
+                        .WithMany()
+                        .HasForeignKey("TypeIdentifierId");
+
+                    b.Navigation("TypeIdentifier");
                 });
 
             modelBuilder.Entity("Building.Models.Tenant", b =>

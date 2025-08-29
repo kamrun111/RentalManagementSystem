@@ -71,6 +71,16 @@
                                 </ul> 
                             </li> <!--end dropdown menu-->
 @*                         } *@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Accounting
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="admin" asp-controller="MonthEntry" asp-action="Index"> MonthEntry</a>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
                     <partial name="_LoginPartial"/>

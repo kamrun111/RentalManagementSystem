@@ -31,6 +31,8 @@ namespace Building.DataAccess.Data
 
         public DbSet<MonthEntry> MonthEntries { get; set; }
 
+        public DbSet<TypeIdentifier> TypeIdentifiers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

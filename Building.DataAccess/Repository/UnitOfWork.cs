@@ -21,9 +21,11 @@ namespace Building.DataAccess.Repository
         public IExpenditureRepository Expenditure { get; private set; }
         public IExpenditureDetailRepository ExpenditureDetail { get; private set; }
         public IExpenseRepository Expense { get; private set; }
+        public IMonthEntryRepository MonthEntry { get; private set; }
 
-       // Store procedure repository
+        // Store procedure repository
         public IStoreProcedureGenericRepository StoreProcedure { get; private set; }
+        public ITypeIdentifiereRepository TypeIdentifier { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -36,7 +38,9 @@ namespace Building.DataAccess.Repository
             Expenditure = new ExpenditureRepository(_db);
             ExpenditureDetail = new ExpenditureDetailRepository(_db);
             Expense = new ExpenseRepository(_db);
+            MonthEntry = new MonthEntryRepository(_db);
             StoreProcedure = new StoreProcedureGenericRepository(_db);
+            TypeIdentifier = new TypeIdentifiereRepository(_db);
         }
 
 
